@@ -5,6 +5,7 @@ import  '../../assets/login-animation.js';
 import { LoginService } from '../_service/login.service.js';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { MenuService } from '../_service/menu.service.js';
+import { Menu } from '../_model/menu';
 
 @Component({
   selector: 'app-login',
@@ -29,23 +30,29 @@ export class LoginComponent implements OnInit {
     
     this.loginService.login(this.email, this.password).subscribe(
       data => {
-      if (data) {
-        const helper = new JwtHelperService();
-        sessionStorage.setItem(environment.TOKEN_NAME, data.access_token);
+        if (data) {
+          const helper = new JwtHelperService();
+          sessionStorage.setItem(environment.TOKEN_NAME, data.access_token);
 
-        let token = sessionStorage.getItem(environment.TOKEN_NAME);
-        let decodedToken = helper.decodeToken(token);
-    
-        this.menuService.listarPorUsuario(decodedToken.user_name).subscribe(data => {
-          console.log((data));
-          this.menuService.menuCambio.next(data);
-          this.router.navigate(['paciente']);
-        }); 
-      }             
-    },
-    ex => {
-      console.log(ex);
-    }
+          let token = sessionStorage.getItem(environment.TOKEN_NAME);
+          let decodedToken = helper.decodeToken(token);
+
+          this.menuService.listarPorUsuario(decodedToken.user_name)
+          .subscribe(
+            (menu: Menu[]) => {
+              console.log(menu);
+              this.menuService.menuCambio.next(menu);
+              this.router.navigate(['paciente']);
+            },
+            ex => {
+              console.log('ERROR');
+            }
+          ); 
+        }             
+      },
+      ex => {
+        console.log(ex);
+      }
     );
   }
 

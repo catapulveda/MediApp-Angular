@@ -26,6 +26,8 @@ import { LoginComponent } from './login/login.component';
 
 import { JwtModule } from "@auth0/angular-jwt";
 
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+
 export function tokenGetter() {
   let token = sessionStorage.getItem(environment.TOKEN_NAME);
   let tk = token != null ? token : '';
@@ -68,7 +70,9 @@ export function tokenGetter() {
       }
     })
   ],
-  providers: [],
+  providers: [
+    { provide: LocationStrategy, useClass: HashLocationStrategy}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

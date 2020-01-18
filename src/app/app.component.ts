@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
   menus: Menu[] = [];
   
@@ -16,11 +16,10 @@ export class AppComponent implements OnInit{
 
   }
 
-  ngOnInit(){
-    console.log('ngOnInit AppComponent');
+  ngOnInit(){  
     this.menuService.menuCambio.subscribe(
       data => {
-        console.log('CAMBIOS EN EL MENU');
+        console.log('SE DETECTO UN CAMBIO EN EL MENU ' + data);
         this.menus = data;
       },
       ex => {
