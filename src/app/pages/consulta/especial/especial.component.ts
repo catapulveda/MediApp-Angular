@@ -207,7 +207,7 @@ export class EspecialComponent implements OnInit {
 
     let consultaListaExamenDTO = new ConsultaListaExamenDTO();
     consultaListaExamenDTO.consulta = consulta;
-    consultaListaExamenDTO.listaExamen = this.examenesSeleccionados;
+    consultaListaExamenDTO.examen = this.examenesSeleccionados;
 
     this.consultaService.registrar(consultaListaExamenDTO).subscribe(() => {
       this.snackBar.open("CONSULTA REGISTRADA", "OK", {duration: 3000});

@@ -15,37 +15,68 @@ import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [
-  {path: 'paciente', component: PacienteComponent, children:[
-      {path: 'nuevo', component: PacienteEdicionComponent},//RUTA http://localhost:4200/paciente/nuevo muestra el formulario de registro en blanco
-      {path: 'edicion/:id', component: PacienteEdicionComponent}//http://localhost:4200/paciente/2 Muestra el formulario con los datos del id pasado como parametro para poder ser editado
+  {
+    path: 'paciente',
+    component: PacienteComponent,
+    children: [
+      { path: 'nuevo', component: PacienteEdicionComponent },//RUTA http://localhost:4200/paciente/nuevo muestra el formulario de registro en blanco
+      { path: 'edicion/:id', component: PacienteEdicionComponent }//http://localhost:4200/paciente/2 Muestra el formulario con los datos del id pasado como parametro para poder ser editado
     ]
   },
 
-  {path: 'medico', component: MedicoComponent},
+  {
+    path: 'medico',
+    component: MedicoComponent
+  },
 
-  {path: 'examen', component: ExamenComponent, children:[
-      {path: 'nuevo', component: ExamenEdicionComponent},
-      {path: 'edicion/:id', component: ExamenEdicionComponent}
+  {
+    path: 'examen',
+    component: ExamenComponent,
+    children: [
+      { path: 'nuevo', component: ExamenEdicionComponent },
+      { path: 'edicion/:id', component: ExamenEdicionComponent }
     ]
   },
 
-  {path: 'especialidad', component: EspecialidadComponent, children:[
-      {path: 'nuevo', component: EspecialidadEdicionComponent},
-      {path: 'edicion/:id', component: EspecialidadEdicionComponent}
+  {
+    path: 'especialidad',
+    component: EspecialidadComponent,
+    children: [
+      { path: 'nuevo', component: EspecialidadEdicionComponent },
+      { path: 'edicion/:id', component: EspecialidadEdicionComponent }
     ]
   },
 
-  {path: 'consulta', component: ConsultaComponent},
+  {
+    path: 'consulta',
+    component: ConsultaComponent
+  },
 
-  { path: 'consulta-especial', component: EspecialComponent },
+  {
+    path: 'consulta-especial',
+    component: EspecialComponent
+  },
 
-  {path: 'buscar', component: BuscarComponent},
-  
-  {path: 'reporte', component: ReporteComponent},
+  {
+    path: 'buscar',
+    component: BuscarComponent
+  },
 
-  {path: 'login', component: LoginComponent},
+  {
+    path: 'reporte',
+    component: ReporteComponent
+  },
 
-  {path: '', redirectTo: 'login', pathMatch: 'full'} //pathMatch anade automaticamente :4200
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  } //pathMatch anade automaticamente :4200
 ];
 
 @NgModule({

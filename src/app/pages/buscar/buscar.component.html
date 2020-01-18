@@ -20,6 +20,8 @@
     <button mat-raised-button color="primary" type="submit">Buscar</button>    
 </form>
 
+<mat-progress-bar mode="query" *ngIf="buscando"></mat-progress-bar>
+
 
 <mat-table [dataSource]="dataSource">
 

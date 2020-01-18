@@ -7,6 +7,7 @@ import { ConsultaService } from 'src/app/_service/consulta.service';
 import { FiltroConsultaDTO } from './../../_dto/FiltroConsultaDTO';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-buscar',
@@ -24,6 +25,8 @@ export class BuscarComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
+  buscando = false;
+
   constructor(private consultaService: ConsultaService, private dialogo: MatDialog) { }
 
   ngOnInit() {
@@ -37,6 +40,7 @@ export class BuscarComponent implements OnInit {
   }
 
   buscar() {
+    this.buscando = true;
     let filtro = new FiltroConsultaDTO(this.form.value['documento'], this.form.value['nombreCompleto'], this.form.value['fechaConsulta']);
     filtro.nombreCompleto = filtro.nombreCompleto.toLowerCase();
 
@@ -45,11 +49,14 @@ export class BuscarComponent implements OnInit {
       delete filtro.documento;// delete ES PROPIO DE JS Y SIRVE PARA TRABAJR EN EL TEMA DE LOS OBJETOS JSON, CON ESTO ELIMINO ESTE ATRIBUTO DEL JSON QUE SE ESTA CONSTRUYENDO... NO SON NECESARIOS SI YA TENGO LA FECHA
       delete filtro.nombreCompleto;
 
-      this.consultaService.buscar(filtro).subscribe(data => {
-        this.dataSource = new MatTableDataSource(data);
-        this.dataSource.sort = this.sort;
-        this.dataSource.paginator = this.paginator;
-      });
+      this.consultaService.buscar(filtro)
+      .subscribe(
+        data => {
+          this.dataSource = new MatTableDataSource(data);
+          this.dataSource.sort = this.sort;
+          this.dataSource.paginator = this.paginator;
+        }
+      );
       
     }else{
       delete filtro.fechaConsulta;
@@ -69,6 +76,7 @@ export class BuscarComponent implements OnInit {
       });
 
     }
+    this.buscando = false;
   }
 
   verDetalle(consulta: Consulta) {

@@ -1,7 +1,7 @@
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import '../../assets/login-animation.js';
+import  '../../assets/login-animation.js';
 import { LoginService } from '../_service/login.service.js';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { MenuService } from '../_service/menu.service.js';
@@ -13,10 +13,10 @@ import { MenuService } from '../_service/menu.service.js';
 })
 export class LoginComponent implements OnInit {
 
-  email: string;
-  password: string;
-  mensaje: string = "";
-  error: string = "";
+  email: string = 'admin@admin.com';
+  password: string = '123';
+  mensaje: string = '';
+  error: string = '';
 
   constructor(private loginService: LoginService, 
     private router: Router,
@@ -26,22 +26,27 @@ export class LoginComponent implements OnInit {
   }
   
   iniciarSesion() {
-    this.loginService.login(this.email, this.password).subscribe(data => {
+    
+    this.loginService.login(this.email, this.password).subscribe(
+      data => {
       if (data) {
-
         const helper = new JwtHelperService();
         sessionStorage.setItem(environment.TOKEN_NAME, data.access_token);
 
         let token = sessionStorage.getItem(environment.TOKEN_NAME);
         let decodedToken = helper.decodeToken(token);
-        //console.log(decodedToken);
     
         this.menuService.listarPorUsuario(decodedToken.user_name).subscribe(data => {
+          console.log((data));
           this.menuService.menuCambio.next(data);
-          console.log('es '+JSON.stringify(this.menuService.menuCambio));
+          this.router.navigate(['paciente']);
         }); 
       }             
-    });
+    },
+    ex => {
+      console.log(ex);
+    }
+    );
   }
 
   ngAfterViewInit() {

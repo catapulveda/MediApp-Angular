@@ -157,7 +157,7 @@ export class ConsultaComponent implements OnInit {
 
     let consultaListaExamenDTO = new ConsultaListaExamenDTO();
     consultaListaExamenDTO.consulta = consulta;
-    consultaListaExamenDTO.listaExamen = this.examenesSeleccionados;
+    consultaListaExamenDTO.examen = this.examenesSeleccionados;
 
     this.consultaService.registrar(consultaListaExamenDTO).subscribe( ()=>{
       this.snackBar.open("CONSULTA REGISTRADA", "Aviso", {duration: 2000});

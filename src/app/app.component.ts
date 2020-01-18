@@ -18,9 +18,15 @@ export class AppComponent implements OnInit{
 
   ngOnInit(){
     console.log('ngOnInit AppComponent');
-    this.menuService.menuCambio.subscribe( data => {
-      console.log('LOS DATOS SON '+data);
-    });
+    this.menuService.menuCambio.subscribe(
+      data => {
+        console.log('CAMBIOS EN EL MENU');
+        this.menus = data;
+      },
+      ex => {
+        console.log('ERROR '+JSON.stringify(ex));
+      }
+    );
   }
   
 }

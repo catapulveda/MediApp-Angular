@@ -63,8 +63,8 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        whitelistedDomains: ["localhost:8080"],
-        blacklistedRoutes: ["http://localhost:8080/enviarCorreo"]
+        whitelistedDomains: ['localhost:8080'],//INDICA EL DOMINIO A QUIEN SE LE DEBE MANDAR SIEMPRE EL TOKEN
+        blacklistedRoutes: ['http://localhost:8080/enviarCorreo']//EXCLUIR AQUELLAS QUE NO NECESITEN TOKEN
       }
     })
   ],

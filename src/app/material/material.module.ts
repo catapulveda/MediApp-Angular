@@ -2,7 +2,7 @@ import { MatPaginatorImpl } from './mat-paginator';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { MatTableModule, MatButtonModule, MatSortModule, MatPaginatorModule, MatIconModule, MatFormFieldModule, MatInputModule, MatCardModule, MatSidenavModule, MatToolbarModule, MatMenuModule, MatDividerModule, MatDialogModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE, MatAccordion, MatExpansionModule, MatAutocompleteModule, MatPaginatorIntl } from '@angular/material'; 
 
@@ -10,6 +10,7 @@ import { MatTableModule, MatButtonModule, MatSortModule, MatPaginatorModule, Mat
   declarations: [],
   imports: [
     CommonModule,
+    MatProgressBarModule,
     MatButtonModule,
     MatTableModule,
     MatSortModule,
@@ -52,7 +53,8 @@ import { MatTableModule, MatButtonModule, MatSortModule, MatPaginatorModule, Mat
     MatDatepickerModule,
     MatNativeDateModule,
     MatExpansionModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatProgressBarModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'es-ES' },
