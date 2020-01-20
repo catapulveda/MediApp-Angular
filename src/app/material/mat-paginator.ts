@@ -1,7 +1,9 @@
 import { MatPaginatorIntl } from '@angular/material';
+import { Injectable } from '@angular/core';
 
 //SOBREESCRBIMOS UNOS ATRIBUTOS Y UN METODO DE LA CLASE EXTENDIDA, PARA CAMBIAR LAS PALABRAS A ESPAÑOL
-export class MatPaginatorImpl extends MatPaginatorIntl{
+@Injectable()
+export class MatPaginatorImpl extends MatPaginatorIntl {
 
     itemsPerPageLabel = 'Items por página';
     nextPageLabel = 'Siguiente';

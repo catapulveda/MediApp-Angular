@@ -19,7 +19,6 @@ export class AppComponent implements OnInit {
   ngOnInit(){  
     this.menuService.menuCambio.subscribe(
       data => {
-        console.log('SE DETECTO UN CAMBIO EN EL MENU ' + data);
         this.menus = data;
       },
       ex => {

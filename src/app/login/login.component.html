@@ -130,6 +130,9 @@
       <label for="password">Password</label>
       <input type="password" id="password" name="password" [(ngModel)]="password" class="password" required/>
     </div>
+    <div style="text-align: center">
+      <a routerLink="/recuperar">¿Olvidaste tu contraseña?</a>
+    </div>
     <div class="inputGroup inputGroup3">
       <button id="login" type="submit" [disabled]="loginForm.invalid">Log in</button>
     </div>

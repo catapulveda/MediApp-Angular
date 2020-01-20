@@ -40,9 +40,8 @@ export class LoginComponent implements OnInit {
           this.menuService.listarPorUsuario(decodedToken.user_name)
           .subscribe(
             (menu: Menu[]) => {
-              console.log(menu);
               this.menuService.menuCambio.next(menu);
-              this.router.navigate(['paciente']);
+              this.router.navigate(['/paciente']);
             },
             ex => {
               console.log('ERROR');

@@ -14,11 +14,9 @@ import { finalize } from 'rxjs/operators';
   templateUrl: './buscar.component.html',
   styleUrls: ['./buscar.component.css']
 })
-
-
-
 export class BuscarComponent implements OnInit {
 
+  maxFecha: Date = new Date();
   form: FormGroup;
   displayedColumns = ['paciente', 'medico', 'especialidad', 'fecha', 'acciones'];
   dataSource: MatTableDataSource<Consulta>;

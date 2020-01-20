@@ -193,6 +193,14 @@ export class EspecialComponent implements OnInit {
     return (this.listaDetalleConsulta.length === 0 || this.especialidadSeleccionada === null || this.medicoSeleccionado === null || this.pacienteSeleccionado === null);
   }
 
+  removerDiagnostico(index: number) {
+    this.listaDetalleConsulta.splice(index, 1);
+  }
+
+  removerExamen(index: number) {
+    this.examenesSeleccionados.splice(index, 1);
+  }
+
   aceptar(){
     let consulta = new Consulta();
     consulta.especialidad = this.form.value['especialidad'];//this.especialidadSeleccionada;

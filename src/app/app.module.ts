@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PacienteComponent } from './pages/paciente/paciente.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PacienteEdicionComponent } from './pages/paciente/paciente-edicion/paciente-edicion.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MedicoComponent } from './pages/medico/medico.component';
@@ -27,6 +27,10 @@ import { LoginComponent } from './login/login.component';
 import { JwtModule } from "@auth0/angular-jwt";
 
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { Not403Component } from './pages/not403/not403.component';
+import { RecuperarComponent } from './login/recuperar/recuperar.component';
+import { TokenComponent } from './login/recuperar/token/token.component';
+import { ServerErrorsInterceptor } from './_shared/server-errors-interceptor';
 
 export function tokenGetter() {
   let token = sessionStorage.getItem(environment.TOKEN_NAME);
@@ -50,7 +54,10 @@ export function tokenGetter() {
     BuscarComponent,
     DialogoDetalleConsultaComponent,
     ReporteComponent,
-    LoginComponent
+    LoginComponent,
+    Not403Component,
+    RecuperarComponent,
+    TokenComponent
   ],
   entryComponents: [MedicoDialogoComponent, DialogoDetalleConsultaComponent],//los dialogos modales se deben registrar aqui para que puedan ser llamados desde otro componente
   imports: [
@@ -65,13 +72,18 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        whitelistedDomains: ['localhost:8080'],//INDICA EL DOMINIO A QUIEN SE LE DEBE MANDAR SIEMPRE EL TOKEN
-        blacklistedRoutes: ['http://localhost:8080/enviarCorreo']//EXCLUIR AQUELLAS QUE NO NECESITEN TOKEN
+        whitelistedDomains: ['localhost:8080'],//['167.172.145.245'],//INDICA EL DOMINIO A QUIEN SE LE DEBE MANDAR SIEMPRE EL TOKEN
+        blacklistedRoutes: ['http://localhost:8080/login/enviarCorreo']//['http://167.172.145.245/mediapp-backend/login/enviarCorreo']//EXCLUIR AQUELLAS QUE NO NECESITEN TOKEN
       }
     })
   ],
   providers: [
-    { provide: LocationStrategy, useClass: HashLocationStrategy}
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ServerErrorsInterceptor,
+      multi: true,
+    },
+    { provide: LocationStrategy, useClass: HashLocationStrategy}//GENERA UN SIGNO # PARA NAVEGACION EN ANGULAR Y QUE TOMCAT NO CREA QUE ES UN SERVLET
   ],
   bootstrap: [AppComponent]
 })
