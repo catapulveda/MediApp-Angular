@@ -1,0 +1,25 @@
+<div class="example-container">
+    <mat-form-field class="example-full-width" *ngIf="isAdd">
+        <input type="text" placeholder="Buscar paciente" matInput [formControl]="controlPaciente"
+        [matAutocomplete]="autoPaciente">
+        <mat-autocomplete #autoPaciente="matAutocomplete" [displayWith]="textoAMostrar" (optionSelected)="seleccionarPaciente($event)">
+            <mat-option *ngFor="let option of pacientes | async" [value]="option">
+                {{option.nombres}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Pulso" [(ngModel)]="signosVitales.pulso">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Ritmo Respiratorio" [(ngModel)]="signosVitales.ritmoRespiratorio">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Temperatura" [(ngModel)]="signosVitales.temperatura">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Fecha" [(ngModel)]="signosVitales.fecha">
+    </mat-form-field>
+</div>
+<button mat-raised-button color="primary" style="margin-right: 5px" (click)="operar()">Aceptar</button>
+<button mat-raised-button color="accent" (click)="cancelar()">Cancelar</button>
