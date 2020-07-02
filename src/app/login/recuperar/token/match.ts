@@ -1,4 +1,4 @@
-import { AbstractControl } from '@angular/forms';
+import {AbstractControl} from '@angular/forms';
 
 export class PasswordValidation {
 
@@ -6,7 +6,7 @@ export class PasswordValidation {
         let password = AC.get('password').value;
         let confirmPassword = AC.get('confirmPassword').value;
         if (password != confirmPassword) {
-            AC.get('confirmPassword').setErrors({ MatchPassword: true })
+            AC.get('confirmPassword').setErrors({MatchPassword: true})
         } else {
             return null
         }

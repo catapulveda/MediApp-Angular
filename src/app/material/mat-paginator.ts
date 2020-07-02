@@ -1,5 +1,5 @@
-import { MatPaginatorIntl } from '@angular/material';
-import { Injectable } from '@angular/core';
+import {MatPaginatorIntl} from '@angular/material';
+import {Injectable} from '@angular/core';
 
 //SOBREESCRBIMOS UNOS ATRIBUTOS Y UN METODO DE LA CLASE EXTENDIDA, PARA CAMBIAR LAS PALABRAS A ESPAÑOL
 @Injectable()

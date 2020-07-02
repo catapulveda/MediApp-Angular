@@ -1,7 +1,7 @@
 <mat-toolbar>Registro de Consulta</mat-toolbar>
 
 <div class="example-container">
-    
+
     <!--SELECCIONAR UN PACIENTE-->
     <mat-form-field>
         <mat-label>Paciente</mat-label>
@@ -33,11 +33,12 @@
     </mat-form-field>
 
     <mat-form-field>
-        <input matInput [matDatepicker]="picker" placeholder="Escoge una fecha" [max]="maxFecha" [(ngModel)]="fechaSeleccionada">
+        <input matInput [matDatepicker]="picker" placeholder="Escoge una fecha" [max]="maxFecha"
+               [(ngModel)]="fechaSeleccionada">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-    
+
     <!--AGREGAR DIAGNOSTICO CON TRATAMIENTO A UNALISTA-->
     <mat-form-field>
         <input matInput placeholder="Diagnostico" [(ngModel)]="diagnostico">
@@ -47,8 +48,8 @@
         <textarea matInput placeholder="Tratamiento" [(ngModel)]="tratamiento"></textarea>
     </mat-form-field>
 
-    <button mat-raised-button color="primary" (click)="agregarDetalle()">Agregar Detalle</button>    
-    
+    <button mat-raised-button color="primary" (click)="agregarDetalle()">Agregar Detalle</button>
+
     <!--MUESTRA LOS DETALLES DE LA CONSULTA-->
     <mat-accordion>
         <mat-expansion-panel *ngFor="let d of detallesConsulta; let i=index">
@@ -68,7 +69,7 @@
             <button mat-raised-button color="warn" (click)="removerDiagnostico(i)">Remover</button>
 
         </mat-expansion-panel>
-    </mat-accordion>    
+    </mat-accordion>
 
     <!--SELECCIONAR UN EXAMEN-->
     <mat-form-field>
@@ -78,7 +79,7 @@
             </mat-option>
         </mat-select>
     </mat-form-field>
-    
+
     <!--AGREGAR EL EXAMEN SELECCIONADO-->
     <button mat-raised-button color="primary" (click)="agregarExamen()">Agregar Examen</button>
 
@@ -92,6 +93,8 @@
     </mat-toolbar>
 
     <!--GUARDAR LA CONSULTA-->
-    <button mat-raised-button color="primary" (click)="aceptar()" [disabled]="estadoBotonRegistrar()" style="margin-top: 20px;">Registrar</button>
+    <button mat-raised-button color="primary" (click)="aceptar()" [disabled]="estadoBotonRegistrar()"
+            style="margin-top: 20px;">Registrar
+    </button>
 
 </div>

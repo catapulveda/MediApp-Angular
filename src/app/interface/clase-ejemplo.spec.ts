@@ -1,7 +1,7 @@
-import { ClaseEjemplo } from './clase-ejemplo';
+import {ClaseEjemplo} from './clase-ejemplo';
 
 describe('ClaseEjemplo', () => {
-  it('should create an instance', () => {
-    expect(new ClaseEjemplo()).toBeTruthy();
-  });
+    it('should create an instance', () => {
+        expect(new ClaseEjemplo()).toBeTruthy();
+    });
 });

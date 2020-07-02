@@ -1,4 +1,4 @@
-export class DetalleConsulta{
+export class DetalleConsulta {
 
     diagnostico: string;
     tratamiento: string;

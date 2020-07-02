@@ -1,7 +1,7 @@
 import {Consulta} from '../_model/consulta';
 import {Examen} from '../_model/examen';
 
-export class ConsultaListaExamenDTO{
+export class ConsultaListaExamenDTO {
     consulta: Consulta;
     examen: Examen[];
 }

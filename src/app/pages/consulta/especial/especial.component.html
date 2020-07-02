@@ -3,13 +3,16 @@
 <form class="example-container" [formGroup]="form" (ngSubmit)="aceptar()" #consultaForm="ngForm">
     <div class="example-container">
         <mat-form-field>
-            <input type="text" placeholder="Paciente" matInput [matAutocomplete]="autoPaciente" [formControl]="inputTextPaciente" formControlName="paciente">
+            <input type="text" placeholder="Paciente" matInput [matAutocomplete]="autoPaciente"
+                   [formControl]="inputTextPaciente" formControlName="paciente">
         </mat-form-field>
         <!-- #autoPaciente="matAutocomplete" => #autoPaciente le asigna un apodo y *matAutocomplete* la clase del tipo de componente-->
         <!-- [displayWith]="textoAMostrar()" => le asignamos el metodo textoAMostrar a la propiedad displayWith (sin los parentesis) -->
         <!-- (optionSelected)="seleccionarPaciente($event)" => le asignamos el metodo seleccionarPaciente($event) a la propiedad optionSelected para saber cual item ha seleccionado -->
-        <mat-autocomplete #autoPaciente="matAutocomplete" [displayWith]="textoAMostrar" (optionSelected)="seleccionarPaciente($event)">
-            <mat-option *ngFor="let p of opcionesFiltradas | async" [value]="p"><!--async libera los recursos del observable-->
+        <mat-autocomplete #autoPaciente="matAutocomplete" [displayWith]="textoAMostrar"
+                          (optionSelected)="seleccionarPaciente($event)">
+            <mat-option *ngFor="let p of opcionesFiltradas | async" [value]="p">
+                <!--async libera los recursos del observable-->
                 {{ p.nombres }} {{p.apellidos}}
             </mat-option>
         </mat-autocomplete>
@@ -24,8 +27,10 @@
     </mat-form-field>
 
     <mat-form-field>
-        <input type="text" placeholder="Médico" matInput [matAutocomplete]="autoMedico" [formControl]="inputTextMedico" formControlName="medico">
-        <mat-autocomplete #autoMedico="matAutocomplete" [displayWith]="mostrarTextoMedico" (optionSelected)="seleccionarMedico($event)">
+        <input type="text" placeholder="Médico" matInput [matAutocomplete]="autoMedico" [formControl]="inputTextMedico"
+               formControlName="medico">
+        <mat-autocomplete #autoMedico="matAutocomplete" [displayWith]="mostrarTextoMedico"
+                          (optionSelected)="seleccionarMedico($event)">
             <mat-option *ngFor="let m of medicosFiltrados | async" [value]="m">
                 {{ m.nombres }} {{m.apellidos}}
             </mat-option>
@@ -33,7 +38,8 @@
     </mat-form-field>
 
     <mat-form-field>
-        <input matInput [matDatepicker]="picker" placeholder="Escoge una fecha" [max]="maxFecha" formControlName="fecha">
+        <input matInput [matDatepicker]="picker" placeholder="Escoge una fecha" [max]="maxFecha"
+               formControlName="fecha">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>

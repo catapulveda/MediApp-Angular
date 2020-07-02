@@ -1,4 +1,4 @@
-export class Paciente{
+export class Paciente {
     idPaciente: number;
     nombres: string;
     apellidos: string;

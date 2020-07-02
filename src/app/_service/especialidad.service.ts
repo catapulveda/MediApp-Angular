@@ -1,38 +1,39 @@
-import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs';
-import { Injectable } from '@angular/core';
-import { Especialidad } from '../_model/especialidad';
-import { environment } from 'src/environments/environment';
+import {HttpClient} from '@angular/common/http';
+import {Subject} from 'rxjs';
+import {Injectable} from '@angular/core';
+import {Especialidad} from '../_model/especialidad';
+import {environment} from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class EspecialidadService {
 
-  notificadorLista = new Subject<Especialidad[]>();
-  notificadorMensaje = new Subject<string>();
+    notificadorLista = new Subject<Especialidad[]>();
+    notificadorMensaje = new Subject<string>();
 
-  url: string = `${environment.HOST}/especialidades`;
+    url: string = `${environment.HOST}/especialidades`;
 
-  constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {
+    }
 
-  listar() {
-    return this.http.get<Especialidad[]>(this.url);
-  }
+    listar() {
+        return this.http.get<Especialidad[]>(this.url);
+    }
 
-  listarPorId(idEspecialidad: number) {
-    return this.http.get<Especialidad>(`${this.url}/${idEspecialidad}`);
-  }
+    listarPorId(idEspecialidad: number) {
+        return this.http.get<Especialidad>(`${this.url}/${idEspecialidad}`);
+    }
 
-  registrar(especialidad: Especialidad) {
-    return this.http.post(this.url, especialidad);
-  }
+    registrar(especialidad: Especialidad) {
+        return this.http.post(this.url, especialidad);
+    }
 
-  modificar(especialidad: Especialidad) {
-    return this.http.put(this.url, especialidad);
-  }
+    modificar(especialidad: Especialidad) {
+        return this.http.put(this.url, especialidad);
+    }
 
-  eliminar(idEspecialidad: number) {
-    return this.http.delete(`${this.url}/${idEspecialidad}`);
-  }
+    eliminar(idEspecialidad: number) {
+        return this.http.delete(`${this.url}/${idEspecialidad}`);
+    }
 }
